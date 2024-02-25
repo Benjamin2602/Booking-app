@@ -4,6 +4,7 @@ import {
   DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 
 import { Menu, MenuIcon } from "lucide-react";
@@ -13,6 +14,7 @@ import {
   LogoutLink,
 } from "@kinde-oss/kinde-auth-nextjs/components";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import Link from "next/link";
 
 export async function UserNav() {
   const { getUser } = getKindeServerSession();
@@ -39,6 +41,24 @@ export async function UserNav() {
         {/* if user signed in then it shows the logout dropmenu  */}
         {user ? (
           <>
+             <DropdownMenuItem>
+              <form className="">
+                <button type="submit" className="w-full">
+                  <Link href="/profile">Profile</Link>
+                </button>
+              </form>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <Link href="/listings">My Listings</Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <Link href="/favorites">My Favorites</Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <Link href="/bookings">My Bookings</Link>
+          </DropdownMenuItem>
+
+          <DropdownMenuSeparator/>
             <DropdownMenuItem>
               <LogoutLink className="w-full">Logout</LogoutLink>
             </DropdownMenuItem>
