@@ -20,5 +20,25 @@ model User {
   firstName String
   lastName String
   profileImage String?
+  Home Home[]
+
+}
+
+//one to many relationship
+// a user can have many homes
+// a home can have one user
+model Home {
+  id String @id @default(uuid())
+  title String?
+  description String?
+  guests String?
+  bedrooms String?
+  country String?
+  photo String?
+  price Int?
+  createdAt DateTime @default(now())
+
+  User User? @relation(fields: [userId], references: [id])
+  userId String?
 
 }
