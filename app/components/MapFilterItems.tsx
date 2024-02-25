@@ -21,13 +21,16 @@ export function MapFilterItems() {
     [searchParams] //indepenedent of searchParams
   );
   return (
-    <div className="flex gap-x-10 mt-5 w-full overflow-x-scroll no-scrollbar ">
+    <div className="flex gap-x-12 mt-5 w-full overflow-x-scroll no-scrollbar ">
       {categoryItems.map((item) => (
         <Link
           key={item.id}
           href={pathname + "?" + createQueryString("filter", item.name)}
           className={cn(
-            search === item.name ? "border-b-2 border-black pb-2 flex-shrink-0" : "opacity-70 flex-shrink-0", "flex flex-col gap-y-3 items-center"
+            search === item.name
+              ? "border-b-2 border-black pb-2 flex-shrink-0"
+              : "opacity-70 flex-shrink-0",
+            "flex flex-col gap-y-3 items-center"
           )}
         >
           <div className="relative w-6 h-6">
