@@ -15,12 +15,17 @@ import {
 } from "@kinde-oss/kinde-auth-nextjs/components";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import Link from "next/link";
+import { createHome } from "../action";
 
 export async function UserNav() {
   const { getUser } = getKindeServerSession();
   //fetching user data
   const user = await getUser();
 
+  //server action
+  const createHomewithId = createHome.bind(null, {
+    userId: user?.id as string,
+  });
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
@@ -41,24 +46,25 @@ export async function UserNav() {
         {/* if user signed in then it shows the logout dropmenu  */}
         {user ? (
           <>
-             <DropdownMenuItem>
-              <form className="">
-                <button type="submit" className="w-full">
-                  <Link href="/profile">Profile</Link>
+            <DropdownMenuItem>
+              {/* server action */}
+              <form action={createHomewithId} className="w-full">
+                <button type="submit" className="w-full text-start">
+                  Booking your Home
                 </button>
               </form>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <Link href="/listings">My Listings</Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <Link href="/favorites">My Favorites</Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <Link href="/bookings">My Bookings</Link>
-          </DropdownMenuItem>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link href="/listings">My Listings</Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link href="/favorites">My Favorites</Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link href="/bookings">My Bookings</Link>
+            </DropdownMenuItem>
 
-          <DropdownMenuSeparator/>
+            <DropdownMenuSeparator />
             <DropdownMenuItem>
               <LogoutLink className="w-full">Logout</LogoutLink>
             </DropdownMenuItem>

@@ -6,14 +6,21 @@ import Image from "next/image";
 import { useState } from "react";
 
 export function SelectCategory() {
-  const [selectCategory, setSelectCategory] = useState<string | null>(null); //state for selected category
+  const [selectCategory, setSelectCategory] = useState<string | undefined>(
+    undefined
+  ); //state for selected category
 
   return (
     <div className="grid grid-cols-4 gap-8 mt-10 w-3/5 mx-auto mb-36">
+      <input
+        type="hidden"
+        name="categoryName"
+        value={selectCategory as string}
+      />
       {categoryItems.map((items) => (
         <div key={items.id} className="cursor-pointer">
           <Card
-        //   use state for selected category 
+            //   use state for selected category
             className={
               selectCategory === items.name ? "border-primary border-2" : ""
             }
