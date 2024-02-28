@@ -33,6 +33,7 @@ model Home {
   description String?
   guests String?
   bedrooms String?
+  bathrooms String?
   country String?
   photo String?
   price Int?
