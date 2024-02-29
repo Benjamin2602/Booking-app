@@ -20,7 +20,7 @@ export async function createHome({ userId }: { userId: string }) {
         userId: userId,
       },
     });
-
+    
     return redirect(`/create/${data.id}/structure`);
     //does the user have a home but no structure ?
   } else if (

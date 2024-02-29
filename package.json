@@ -18,12 +18,14 @@
     "@supabase/supabase-js": "^2.39.7",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
+    "country-flag-icons": "^1.5.9",
     "lucide-react": "^0.338.0",
     "next": "14.1.0",
     "react": "^18",
     "react-dom": "^18",
     "tailwind-merge": "^2.2.1",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "world-countries": "^5.0.0"
   },
   "devDependencies": {
     "@types/node": "^20",
