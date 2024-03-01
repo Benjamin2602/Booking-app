@@ -95,14 +95,14 @@ export async function CreateDescriptionPage(formData: FormData) {
 
 export async function createLocation(formData : FormData){
   const homeId = formData.get("homeId") as string;
-  const countryValue = formData.get("country") as string;
+  const countryValue = formData.get("countryValue") as string;
   const data = await prisma.home.update({
     where: {
-      id : homeId,
+      id: homeId,
     },
     data : {
-      addedLocation : true,
-      country : countryValue,
+      addedLocation: true,
+      country: countryValue,
     },
   });
   return redirect("/");
