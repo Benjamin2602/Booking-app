@@ -4,12 +4,19 @@ import { ListingCard } from "./components/ListingCard";
 import React from "react";
 
 //fetch data from the database
-async function getData() {
+async function getData({
+  searchParams,
+} :{
+  searchParams? : {
+    filter?: string;
+  }
+}) {
   const data = await prisma.home.findMany({
     where: {
       addedCategory: true,
       addedDescription: true,
       addedLocation: true,
+      categoryName : searchParams?.filter ?? undefined
     },
     select: {
       photo: true,
@@ -22,9 +29,15 @@ async function getData() {
   return data;
 }
 
-export default async function Home() {
+export default async function Home({
+  searchParams,
+} :{
+  searchParams? : {
+    filter?: string;
+  }
+}) {
   //call the function
-  const data = await getData();
+  const data = await getData({searchParams : searchParams});
   return (
     <div className="container mx-auto px-5 lg:px-10">
       <MapFilterItems />
