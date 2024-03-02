@@ -39,8 +39,11 @@ export async function createHome({ userId }: { userId: string }) {
     !data.addedLocation
   ) {
     return redirect(`/create/${data.id}/address`);
-  }
-  else if (data.addedCategory && data.addedDescription && data.addedLocation) {
+  } else if (
+    data.addedCategory &&
+    data.addedDescription &&
+    data.addedLocation
+  ) {
     const data = await prisma.home.create({
       data: {
         userId: userId,
