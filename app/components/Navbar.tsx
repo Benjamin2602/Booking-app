@@ -5,7 +5,7 @@ import { UserNav } from "./UserNav";
 
 export function Navbar() {
   return (
-    <nav className="w-full border-b">
+    <nav className="w-full border-b p-4">
       <div className="flex justify-between items-center container mx-auto px-5 lg:px-10 ">
         <Link href="/">
           <Image

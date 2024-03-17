@@ -21,6 +21,7 @@ model User {
   lastName String
   profileImage String?
   Home Home[]
+  Favorite Favorite[]
 
 }
 
@@ -38,6 +39,7 @@ model Home {
   photo String?
   price Int?
   categoryName String?
+  Favorite Favorite[] //ONE TO MANY RELATIONSHIP
 
   addedCategory Boolean @default(false)
   addedDescription Boolean @default(false)
@@ -48,5 +50,20 @@ model Home {
 
   User User? @relation(fields: [userId], references: [id])
   userId String?
+
+}
+
+model Favorite{
+  id String @id @default(uuid())
+  // a user can have many favorites
+  // each favorite can have one user
+  // a home can have many favorites
+  // each favorite can have one home
+  User User? @relation(fields: [userId], references: [id])
+  userId String?
+  Home Home? @relation(fields: [homeId], references: [id])
+  homeId String?
+
+  createdAt DateTime @default(now())
 
 }
